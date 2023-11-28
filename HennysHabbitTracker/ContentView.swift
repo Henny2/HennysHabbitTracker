@@ -8,8 +8,13 @@
 import SwiftUI
 import Observation
 
-enum Frequency {
+
+// make enum available for picker
+// https://sarunw.com/posts/swiftui-picker-enum/
+enum Frequency: CaseIterable, Equatable {
     case weekly, daily
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
 // this is basically the data structure for storing habbit info, thus it's a struct
@@ -33,7 +38,8 @@ struct Habbit: Hashable {
 }
 
 struct ContentView: View {
-    @State var userHabbits = Habbits(habbitList: [Habbit(name: "Walk the dog", description: "Go on a walk with the dog every day", frequency: .daily), Habbit(name: "Do Laundry", description: "Do the dirty laundry", frequency: .weekly), Habbit(name: "Do Laundry", description: "Do the dirty laundry", frequency: .daily)])
+    @State var userHabbits = Habbits(habbitList: [Habbit(name: "Walk the dog", description: "Go on a walk with the dog every day", frequency: .daily), Habbit(name: "Do Laundry", description: "Do the dirty laundry", frequency: .weekly), Habbit(name: "Water Plants", description: "Water the plants", frequency: .weekly)])
+    @State private var createSheetIsShown = false
 //    let habbits = [Habbit(name: "Walk the dog", description: "Go on a walk with the dog every day"), Habbit(name: "Do Laundry", description: "Do the dirty laundry")]
     
     
@@ -42,15 +48,28 @@ struct ContentView: View {
             VStack(alignment:.leading){
                 Text("My daily habbits").font(.headline)
                 List(userHabbits.habbitList, id: \.name ) { habbit in
-                    Text(habbit.name)
+                    if(habbit.frequency == .daily){
+                        Text(habbit.name)
+                    }
                 }
                 Text("My weekly habbits").font(.headline)
-                List {
-                    Text(userHabbits.habbitList[1].name)
+                List(userHabbits.habbitList, id: \.name ) { habbit in
+                    if(habbit.frequency == .weekly){
+                        Text(habbit.name)
+                    }
                 }
             }
             .padding(.horizontal)
             .navigationTitle("Henny's Habbit Tracker")
+            .toolbar {
+                Button("new habbit"){
+                    print("new habbit")
+                    createSheetIsShown = true 
+                }
+            }
+            .sheet(isPresented: $createSheetIsShown, content: {
+                CreateView()
+            })
         }
     }
 }
