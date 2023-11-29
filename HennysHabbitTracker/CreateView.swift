@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct CreateView: View {
-    @State private var test = "hi"
+    @Environment(\.dismiss) var dismiss
+    @State private var habbitName = ""
+    @State private var habbitDescription = ""
     @State private var selectedFrequency = Frequency.daily
+    let habbits: Habbits
     var body: some View {
         NavigationStack{
             VStack{
                 Form {
                     Section("Habbit name"){
-                        TextField("Put in something", text: $test)
+                        TextField("Set a habbit name", text: $habbitName)
                     }
                     Section("Habbit description"){
-                        TextField("Description of the habbit", text: $test)
+                        TextField("Describe the habbit", text: $habbitDescription)
                     }
                     Section("Habbit frequency"){
                         Picker("fequency", selection: $selectedFrequency) {
-                            ForEach(Frequency.allCases, id: \.self) {
-                                Text($0)
+                            ForEach(Frequency.allCases) { frequency in
+                                Text(String(describing: frequency))
                             }
                         }
+                        .labelsHidden()
+                        .pickerStyle(.segmented)
                     }
                 }
             }
@@ -34,11 +39,16 @@ struct CreateView: View {
                 ToolbarItem(placement: .topBarLeading){
                     Button("Cancel"){
                         print("Cancel")
+                        // need to close the sheet, dismiss
                     }
                 }
                 ToolbarItem(placement: .confirmationAction){
                     Button("Save"){
                         print("Save")
+                        // saving the new habbit
+                        let newHabbit = Habbit(name: habbitName, description: habbitDescription, frequency: selectedFrequency)
+                        habbits.habbitList.append(newHabbit)
+                        dismiss()
                     }
                 }
             }
@@ -47,5 +57,6 @@ struct CreateView: View {
 }
 
 #Preview {
-    CreateView()
+    let habbits = Habbits(habbitList: [Habbit(name: "Test Habbit", description: "testing habbit tracker", frequency: Frequency.daily)])
+    return CreateView(habbits: habbits)
 }

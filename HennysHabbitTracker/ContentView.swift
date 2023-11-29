@@ -11,10 +11,20 @@ import Observation
 
 // make enum available for picker
 // https://sarunw.com/posts/swiftui-picker-enum/
-enum Frequency: CaseIterable, Equatable {
+enum Frequency: CaseIterable, Identifiable, CustomStringConvertible {
     case weekly, daily
     
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    // making an id
+    var id: Self { self }
+
+    var description: String {
+        switch self {
+        case .daily:
+            return "daily"
+        case .weekly:
+            return "weekly"
+        }
+    }
 }
 
 // this is basically the data structure for storing habbit info, thus it's a struct
@@ -68,7 +78,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $createSheetIsShown, content: {
-                CreateView()
+                CreateView(habbits: userHabbits)
             })
         }
     }
