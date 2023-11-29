@@ -39,6 +39,7 @@ struct CreateView: View {
                 ToolbarItem(placement: .topBarLeading){
                     Button("Cancel"){
                         print("Cancel")
+                        dismiss()
                         // need to close the sheet, dismiss
                     }
                 }
