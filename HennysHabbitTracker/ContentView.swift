@@ -28,27 +28,26 @@ enum Frequency: CaseIterable, Identifiable, CustomStringConvertible {
 }
 
 // this is basically the data structure for storing habbit info, thus it's a struct
-struct Habbit: Hashable {
+struct Habbit: Identifiable {
+    var id = UUID()
     var name: String
     var description: String
     var frequency: Frequency
+    var habbitCount = 0
 }
 
-// we want to keep track of the list of habbits and pass that around, so we track that with @Observable
-@Observable class Habbits {
-    var habbitList: [Habbit]
+// we want to keep track of the list of habbits and pass that around, so we track that with
+@Observable 
+class Habbits {
+    var habbitList = [Habbit]()
     
-    // we can change the above to the following to get rid of the init() method but for that we need the add view first
-    // var habbitList = [Habbit]()
-    
-    
-    init(habbitList: [Habbit]) {
-        self.habbitList = habbitList
+    init() {
+        self.habbitList = []
     }
 }
 
 struct ContentView: View {
-    @State var userHabbits = Habbits(habbitList: [])
+    @State private var userHabbits = Habbits()
     @State private var createSheetIsShown = false
 
     var body: some View {
@@ -57,7 +56,6 @@ struct ContentView: View {
                 Text("My daily habbits").font(.headline)
                 List(userHabbits.habbitList, id: \.name ) { habbit in
                     if(habbit.frequency == .daily){
-//                        Text(habbit.name)
                         NavigationLink(habbit.name){
                             HabbitView(habbit: habbit)
                         }

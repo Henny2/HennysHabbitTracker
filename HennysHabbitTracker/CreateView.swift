@@ -58,6 +58,5 @@ struct CreateView: View {
 }
 
 #Preview {
-    let habbits = Habbits(habbitList: [Habbit(name: "Test Habbit", description: "testing habbit tracker", frequency: Frequency.daily)])
-    return CreateView(habbits: habbits)
+    CreateView(habbits: Habbits())
 }
