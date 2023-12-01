@@ -34,6 +34,7 @@ struct Habbit: Identifiable {
     var description: String
     var frequency: Frequency
     var habbitCount = 0
+    var mostRecentCompletionDate: Date?
 }
 
 // we want to keep track of the list of habbits and pass that around, so we track that with

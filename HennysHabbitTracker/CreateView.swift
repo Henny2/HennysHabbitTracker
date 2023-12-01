@@ -47,7 +47,7 @@ struct CreateView: View {
                     Button("Save"){
                         print("Save")
                         // saving the new habbit
-                        let newHabbit = Habbit(name: habbitName, description: habbitDescription, frequency: selectedFrequency)
+                        let newHabbit = Habbit(name: habbitName, description: habbitDescription, frequency: selectedFrequency, mostRecentCompletionDate: nil)
                         habbits.habbitList.append(newHabbit)
                         dismiss()
                     }
