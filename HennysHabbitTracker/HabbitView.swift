@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+extension Date {
+        func formatDate() -> String {
+                let dateFormatter = DateFormatter()
+            dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d, HH mm ss")
+            return dateFormatter.string(from: self)
+        }
+}
+
 // check this for alignment: https://sarunw.com/posts/how-to-align-text-in-swiftui/
 
 struct HabbitView: View {
@@ -35,30 +43,26 @@ struct HabbitView: View {
                     Text("Habbit counter").font(.headline)
                     HStack{
                         Button{
-                            print("add one")
                             habbit.habbitCount = habbit.habbitCount + 1
+                            habbit.mostRecentCompletionDate = Date.now
+                            
                         } label: {
                             Image(systemName: "plus")
                         }
                         Text(habbit.frequency == .daily ? "\(String(habbit.habbitCount)) days" :"\(String(habbit.habbitCount)) weeks" ).padding()
                         Button{
-                            print("subtract one")
-                            
-                            if let date = habbit.mostRecentCompletionDate{
-                                print(date)
-                                print(formatter1.string(from: date))
-                                
-                            }
                             if habbit.habbitCount > 0 {
                                 habbit.habbitCount = habbit.habbitCount - 1
+                                habbit.mostRecentCompletionDate = Date.now
                             }
+                            
                         } label: {
                             Image(systemName: "minus")
                         }
                     }
                     // date formatting: https://designcode.io/swiftui-handbook-format-date
                     if let date = habbit.mostRecentCompletionDate{
-                        Text("Most recent completion: \(date.formatted(.iso8601.year().month().day()))").font(.headline)
+                        Text("Most recent counter change: \n \(date.formatDate())")
                     }
                 }
                 Spacer()
@@ -71,6 +75,6 @@ struct HabbitView: View {
 }
 
 #Preview {
-    let habbit = Habbit(name: "Test", description: "This is a description of a habbit", frequency: .daily, habbitCount: 0, mostRecentCompletionDate: Date.now)
+    let habbit = Habbit(name: "Test", description: "This is a description of a habbit", frequency: .daily, habbitCount: 0)
     return HabbitView(habbit: habbit)
 }
