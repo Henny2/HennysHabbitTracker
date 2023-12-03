@@ -13,6 +13,7 @@
 		40C560882B142B03009E887D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40C560872B142B03009E887D /* Preview Assets.xcassets */; };
 		40C5608F2B159AD2009E887D /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5608E2B159AD2009E887D /* CreateView.swift */; };
 		40C560912B16E5A2009E887D /* HabbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C560902B16E5A2009E887D /* HabbitView.swift */; };
+		40C560932B1C3725009E887D /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C560922B1C3725009E887D /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		40C560872B142B03009E887D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		40C5608E2B159AD2009E887D /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		40C560902B16E5A2009E887D /* HabbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitView.swift; sourceTree = "<group>"; };
+		40C560922B1C3725009E887D /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				40C560822B142B01009E887D /* ContentView.swift */,
 				40C560902B16E5A2009E887D /* HabbitView.swift */,
 				40C5608E2B159AD2009E887D /* CreateView.swift */,
+				40C560922B1C3725009E887D /* EditView.swift */,
 				40C560842B142B03009E887D /* Assets.xcassets */,
 				40C560862B142B03009E887D /* Preview Content */,
 			);
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C560912B16E5A2009E887D /* HabbitView.swift in Sources */,
+				40C560932B1C3725009E887D /* EditView.swift in Sources */,
 				40C560832B142B01009E887D /* ContentView.swift in Sources */,
 				40C5608F2B159AD2009E887D /* CreateView.swift in Sources */,
 				40C560812B142B01009E887D /* HennysHabbitTrackerApp.swift in Sources */,
