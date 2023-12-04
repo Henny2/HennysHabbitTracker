@@ -28,13 +28,23 @@ enum Frequency: CaseIterable, Identifiable, CustomStringConvertible {
 }
 
 // this is basically the data structure for storing habbit info, thus it's a struct
-struct Habbit: Identifiable {
+@Observable 
+class Habbit: Identifiable {
     var id = UUID()
     var name: String
     var description: String
     var frequency: Frequency
     var habbitCount = 0
     var mostRecentCompletionDate: Date?
+    
+    init(id: UUID = UUID(), name: String, description: String, frequency: Frequency, habbitCount: Int = 0, mostRecentCompletionDate: Date? = nil) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.frequency = frequency
+        self.habbitCount = habbitCount
+        self.mostRecentCompletionDate = mostRecentCompletionDate
+    }
 }
 
 // we want to keep track of the list of habbits and pass that around, so we track that with

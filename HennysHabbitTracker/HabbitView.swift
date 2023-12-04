@@ -17,10 +17,12 @@ extension Date {
 
 // check this for alignment: https://sarunw.com/posts/how-to-align-text-in-swiftui/
 
-// maybe I have to make habbit a class too? So that I can pass the info around 
+// maybe I have to make habbit a class too? So that I can pass the info around
+// or maybe I need @Binding or something like that
+// look into the tutorial about @Binding, struct vs class
 
 struct HabbitView: View {
-    @State var habbit: Habbit
+    @Bindable var habbit: Habbit
     @State private var editSheetIsShown = false
     let formatter1 = DateFormatter()
 //    formatter1.dateStyle = .short

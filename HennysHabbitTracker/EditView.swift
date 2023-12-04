@@ -51,7 +51,8 @@ struct EditView: View {
                         habbit.description = habbitDescription
                         habbit.name = habbitName
                         habbit.frequency = selectedFrequency
-                        
+                        print(habbit.name)
+                        print(habbit.frequency)
                         dismiss()
                     }
                 }
